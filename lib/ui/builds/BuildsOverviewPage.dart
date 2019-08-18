@@ -12,18 +12,18 @@ import '../../model/AppListResponseModel.dart';
 import 'BuildDetailPage.dart';
 
 class BuildsOverviewPage extends StatelessWidget {
-  final AppResponseItemModel appSlug;
+  final AppResponseItemModel appResponseItemModel;
 
   const BuildsOverviewPage({
     Key key,
-    this.appSlug,
+    this.appResponseItemModel,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(appSlug.title + ' - ' + 'Builds Overview'),
+        title: Text(appResponseItemModel.title + ' - ' + 'Builds Overview'),
       ),
       body: _buildBody(context),
     );
@@ -31,7 +31,7 @@ class BuildsOverviewPage extends StatelessWidget {
 
   FutureBuilder<Response> _buildBody(BuildContext context) {
     return FutureBuilder<Response<BuildListResponseModel>>(
-      future: Provider.of<BitriseApiService>(context).getBuilds(appSlug.slug),
+      future: Provider.of<BitriseApiService>(context).getBuilds(appResponseItemModel.slug),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {
@@ -45,7 +45,7 @@ class BuildsOverviewPage extends StatelessWidget {
           }
 
           final posts = snapshot.data.body.data;
-          return _buildPosts(context, posts);
+          return _buildItems(context, posts);
         } else {
           return Center(
             child: CircularProgressIndicator(),
@@ -55,7 +55,7 @@ class BuildsOverviewPage extends StatelessWidget {
     );
   }
 
-  ListView _buildPosts(BuildContext context,
+  ListView _buildItems(BuildContext context,
       List<BuildResponseItemModel> buildResponseItemModels) {
     return ListView.builder(
       itemCount: buildResponseItemModels.length,
@@ -63,7 +63,7 @@ class BuildsOverviewPage extends StatelessWidget {
       itemBuilder: (context, index) {
         return InkWell(
           onTap: () {
-            _navigateToPost(context, buildResponseItemModels[index]);
+            _navigateToBuildDetailPage(context, buildResponseItemModels[index]);
           },
           child: Card(
             elevation: 4,
@@ -91,11 +91,11 @@ class BuildsOverviewPage extends StatelessWidget {
     );
   }
 
-  void _navigateToPost(BuildContext context, BuildResponseItemModel id) {
+  void _navigateToBuildDetailPage(BuildContext context, BuildResponseItemModel buildResponseItemModel) {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) =>
-            BuildDetailPage(appSlug: appSlug.slug, buildItem: id),
+            BuildDetailPage(appSlug: appResponseItemModel.slug, buildItem: buildResponseItemModel),
       ),
     );
   }

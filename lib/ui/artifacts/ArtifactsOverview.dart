@@ -45,7 +45,7 @@ class ArtifactsOverview extends StatelessWidget {
           }
 
           final posts = snapshot.data.body.data;
-          return _buildPosts(context, posts);
+          return _buildItems(context, posts);
         } else {
           // Show a loading indicator while waiting for the posts
           return Center(
@@ -56,15 +56,15 @@ class ArtifactsOverview extends StatelessWidget {
     );
   }
 
-  ListView _buildPosts(
-      BuildContext context, List<ArtifactListElementResponseModel> posts) {
+  ListView _buildItems(
+      BuildContext context, List<ArtifactListElementResponseModel> items) {
     return ListView.builder(
-      itemCount: posts.length,
+      itemCount: items.length,
       padding: EdgeInsets.all(8),
       itemBuilder: (context, index) {
         return InkWell(
             onTap: () {
-              _navigateToPost(context, posts[index].slug);
+              _navigateToArtifactDetailPage(context, items[index].slug);
             },
             child: Card(
                 elevation: 4,
@@ -72,7 +72,7 @@ class ArtifactsOverview extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Text(posts[index].title,textScaleFactor: 1.3),
+                    Text(items[index].title,textScaleFactor: 1.3),
                   IconButton( icon: Icon(Icons.file_download))
                   ],
                 )));
@@ -80,7 +80,7 @@ class ArtifactsOverview extends StatelessWidget {
     );
   }
 
-  void _navigateToPost(BuildContext context, String slug) {
+  void _navigateToArtifactDetailPage(BuildContext context, String slug) {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => ArtifactDetailPage(

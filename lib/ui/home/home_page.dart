@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
           }
 
           final posts = snapshot.data.body.data;
-          return _buildPosts(context, posts);
+          return _buildItems(context, posts);
         } else {
           return Center(
             child: CircularProgressIndicator(),
@@ -42,30 +42,30 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  ListView _buildPosts(BuildContext context, List<AppResponseItemModel> posts) {
+  ListView _buildItems(BuildContext context, List<AppResponseItemModel> items) {
     return ListView.builder(
-      itemCount: posts.length,
+      itemCount: items.length,
       padding: EdgeInsets.all(8),
       itemBuilder: (context, index) {
         return Card(
           elevation: 4,
           child: ListTile(
             title: Text(
-              posts[index].title,
+              items[index].title,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            subtitle: Text(posts[index].title),
-            onTap: () => _navigateToPost(context, posts[index]),
+            subtitle: Text(items[index].title),
+            onTap: () => _navigateToBuildsOverviewPage(context, items[index]),
           ),
         );
       },
     );
   }
 
-  void _navigateToPost(BuildContext context, AppResponseItemModel id) {
+  void _navigateToBuildsOverviewPage(BuildContext context, AppResponseItemModel appResponseItemModel) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => BuildsOverviewPage(appSlug: id),
+        builder: (context) => BuildsOverviewPage(appResponseItemModel: appResponseItemModel),
       ),
     );
   }

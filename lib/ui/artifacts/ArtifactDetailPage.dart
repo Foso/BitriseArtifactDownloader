@@ -25,7 +25,6 @@ class ArtifactDetailPage extends StatelessWidget {
         title: Text('ArtifactDetailPage'),
       ),
       body: _buildBody(context),
-      floatingActionButton: FloatingActionButton(child: Icon(Icons.add)),
     );
   }
 
@@ -46,7 +45,7 @@ class ArtifactDetailPage extends StatelessWidget {
           }
 
           final posts = snapshot.data.body;
-          return _buildPosts(context, posts);
+          return _buildItems(context, posts);
         } else {
           return Center(
             child: CircularProgressIndicator(),
@@ -56,7 +55,7 @@ class ArtifactDetailPage extends StatelessWidget {
     );
   }
 
-  ListView _buildPosts(BuildContext context, ArtifactShowResponseModel posts) {
+  ListView _buildItems(BuildContext context, ArtifactShowResponseModel artifactShowResponseModel) {
     return ListView.builder(
       itemCount: 1,
       padding: EdgeInsets.all(8),
@@ -66,11 +65,11 @@ class ArtifactDetailPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                Text(posts.data.title),
+                Text(artifactShowResponseModel.data.title),
                 RaisedButton(
                   child: Text('Download file in browser'),
                   onPressed: () async {
-                    _launchURL(posts.data.expiringdownloadUrl);
+                    _launchURL(artifactShowResponseModel.data.expiringdownloadUrl);
                   },
                 ),
               ],

@@ -48,7 +48,7 @@ class BuildDetailPage extends StatelessWidget {
           }
 
           final posts = snapshot.data.body.data;
-          return _buildPosts(context, posts);
+          return _buildItems(context, posts);
         } else {
           // Show a loading indicator while waiting for the posts
           return Center(
@@ -59,7 +59,7 @@ class BuildDetailPage extends StatelessWidget {
     );
   }
 
-  ListView _buildPosts(BuildContext context, BuildResponseItemModel posts) {
+  ListView _buildItems(BuildContext context, BuildResponseItemModel buildResponseItemModel) {
     return ListView.builder(
       itemCount: 1,
       padding: EdgeInsets.all(8),
@@ -69,14 +69,14 @@ class BuildDetailPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                Text(posts.branch),
-                Text(posts.commit_message ?? "No commit message"),
-                Text(posts.finished_at),
-                Text(posts.status_text),
+                Text(buildResponseItemModel.branch),
+                Text(buildResponseItemModel.commit_message ?? "No commit message"),
+                Text(buildResponseItemModel.finished_at),
+                Text(buildResponseItemModel.status_text),
                 RaisedButton(
                   child: Text('Open Artifacts'),
                   onPressed: () {
-                    _navigateToPost(context);
+                    _navigateToArtifactsOverview(context);
                   },
                 ),
               ],
@@ -85,7 +85,7 @@ class BuildDetailPage extends StatelessWidget {
     );
   }
 
-  void _navigateToPost(BuildContext context) {
+  void _navigateToArtifactsOverview(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) =>
