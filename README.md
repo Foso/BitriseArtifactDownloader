@@ -17,6 +17,15 @@
 ## Introduction 🙋‍♂️
 This is a flutter app which uses the Bitrise Api(https://api-docs.bitrise.io/) to show the bitrise projects and builds and lets you download your artifacts.
 
+## How to
+*1) You need to generate a Bitrise Api key (https://devcenter.bitrise.io/jp/api/authentication/)
+*2) Insert the token inside the BitriseApiService class. There is no UI option to add it (yet).
+*3) Download the flutter dependecies and run 
+* `flutter packages pub run build_runner build`
+* inside the project folder. This will generate classes used for the HTTPClient.
+
+
+
 ### Show some :heart: and star the repo to support the project
 
 [![GitHub stars](https://img.shields.io/github/stars/Foso/BitriseArtifactDownloader.svg?style=social&label=Star)](https://github.com/Foso/BitriseArtifactDownloader) [![GitHub forks](https://img.shields.io/github/forks/Foso/BitriseArtifactDownloader.svg?style=social&label=Fork)](https://github.com/Foso/BitriseArtifactDownloader/fork) [![GitHub watchers](https://img.shields.io/github/watchers/Foso/BitriseArtifactDownloader.svg?style=social&label=Watch)](https://github.com/Foso/BitriseArtifactDownloader) [![Twitter Follow](https://img.shields.io/twitter/follow/jklingenberg_.svg?style=social)](https://twitter.com/jklingenberg_)
