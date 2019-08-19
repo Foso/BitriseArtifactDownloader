@@ -18,7 +18,7 @@
 This is a flutter app which uses the Bitrise Api(https://api-docs.bitrise.io/) to show the bitrise projects and builds and lets you download your artifacts.
 
 ## How to
-1. You need to generate a Bitrise Api key (https://devcenter.bitrise.io/jp/api/authentication/)
+1. You need to generate a Bitrise Api key (https://devcenter.bitrise.io/api/authentication/)
 2. Insert the token inside the BitriseApiService class. There is no UI option to add it (yet).
 3. Download the flutter dependecies and run 
 * `flutter packages pub run build_runner build`
