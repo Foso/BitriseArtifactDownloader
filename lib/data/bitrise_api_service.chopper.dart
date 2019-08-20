@@ -16,15 +16,13 @@ class _$BitriseApiService extends BitriseApiService {
 
   Future<Response<AppListResponseModel>> getApps() {
     final $url = 'apps';
-    final $headers = {'Authorization': 'INSERT API KEY HERE'};
-    final $request = Request('GET', $url, client.baseUrl, headers: $headers);
+    final $request = Request('GET', $url, client.baseUrl);
     return client.send<AppListResponseModel, AppListResponseModel>($request);
   }
 
   Future<Response<BuildListResponseModel>> getBuilds(String appslug) {
     final $url = 'apps/${appslug}/builds';
-    final $headers = {'Authorization': 'INSERT API KEY HERE'};
-    final $request = Request('GET', $url, client.baseUrl, headers: $headers);
+    final $request = Request('GET', $url, client.baseUrl);
     return client
         .send<BuildListResponseModel, BuildListResponseModel>($request);
   }
@@ -32,8 +30,7 @@ class _$BitriseApiService extends BitriseApiService {
   Future<Response<BuildShowResponseModel>> getBuildById(
       String appslug, String buildslug) {
     final $url = 'apps/${appslug}/builds/${buildslug}';
-    final $headers = {'Authorization': 'INSERT API KEY HERE'};
-    final $request = Request('GET', $url, client.baseUrl, headers: $headers);
+    final $request = Request('GET', $url, client.baseUrl);
     return client
         .send<BuildShowResponseModel, BuildShowResponseModel>($request);
   }
@@ -41,8 +38,7 @@ class _$BitriseApiService extends BitriseApiService {
   Future<Response<ArtifactListResponseModel>> getArtifacts(
       String appslug, String buildslug) {
     final $url = 'apps/${appslug}/builds/${buildslug}/artifacts';
-    final $headers = {'Authorization': 'INSERT API KEY HERE'};
-    final $request = Request('GET', $url, client.baseUrl, headers: $headers);
+    final $request = Request('GET', $url, client.baseUrl);
     return client
         .send<ArtifactListResponseModel, ArtifactListResponseModel>($request);
   }
@@ -51,8 +47,7 @@ class _$BitriseApiService extends BitriseApiService {
       String appslug, String buildslug, String artifactslug) {
     final $url =
         'apps/${appslug}/builds/${buildslug}/artifacts/${artifactslug}';
-    final $headers = {'Authorization': 'INSERT API KEY HERE'};
-    final $request = Request('GET', $url, client.baseUrl, headers: $headers);
+    final $request = Request('GET', $url, client.baseUrl);
     return client
         .send<ArtifactShowResponseModel, ArtifactShowResponseModel>($request);
   }
