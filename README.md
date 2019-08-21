@@ -19,11 +19,10 @@ This is a flutter app which uses the Bitrise Api(https://api-docs.bitrise.io/) t
 
 ## How to
 1. You need to generate a Bitrise Api key (https://devcenter.bitrise.io/api/authentication/)
-2. Insert the token inside the BitriseApiService class. There is no UI option to add it (yet).
-3. Download the flutter dependecies and run 
+2. Download the flutter dependecies and run 
 * `flutter packages pub run build_runner build`
 * inside the project folder. This will generate classes used for the HTTPClient.
-
+3) Insert the Api key in the settings page.
 
 
 ### Show some :heart: and star the repo to support the project
