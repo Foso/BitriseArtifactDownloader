@@ -7,12 +7,61 @@ import 'package:provider/provider.dart';
 import '../../model/AppListResponseModel.dart';
 import '../builds/BuildsOverviewPage.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Bitrise Artifacts Downloader')),
-      body: _buildBody(context),
+      appBar: AppBar(
+        title: const Text('Bitrise Artifacts Downloader'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.settings),
+            onPressed: () =>_showApiTokenInputDialog(context),
+          ),
+          IconButton(
+            icon: Icon(Icons.refresh),
+            onPressed: () { setState(() {
+              // reload
+            }); },
+          )
+        ],
+      ),
+      body: _buildBody(context)
+    );
+  }
+
+  Future<Widget> _showApiTokenInputDialog(BuildContext context) async {
+    final textEditingController = TextEditingController();
+
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Update Bitrise API token'),
+          content: TextField(
+            controller: textEditingController,
+            autofocus: true,
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Set'),
+              onPressed: () {
+                BitriseApiService.token = textEditingController.text.trim();
+                FocusScope.of(context).unfocus();
+                Navigator.of(context).pop();
+                setState(() {
+                  // reload
+                });
+              },
+            )
+          ],
+        );
+      }
     );
   }
 
@@ -21,10 +70,10 @@ class HomePage extends StatelessWidget {
       future: Provider.of<BitriseApiService>(context).getApps(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          if (snapshot.hasError) {
+          if (snapshot.hasError || snapshot.data.body == null) {
             return Center(
               child: Text(
-                snapshot.error.toString(),
+                (snapshot.error ?? 'Unknown error!\n(Check your API token)').toString(),
                 textAlign: TextAlign.center,
                 textScaleFactor: 1.3,
               ),

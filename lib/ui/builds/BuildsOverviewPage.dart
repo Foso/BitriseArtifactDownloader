@@ -11,19 +11,32 @@ import '../../model/BuildResponseItemModel.dart';
 import '../../model/AppListResponseModel.dart';
 import 'BuildDetailPage.dart';
 
-class BuildsOverviewPage extends StatelessWidget {
+class BuildsOverviewPage extends StatefulWidget {
   final AppResponseItemModel appResponseItemModel;
 
   const BuildsOverviewPage({
     Key key,
-    this.appResponseItemModel,
+    this.appResponseItemModel
   }) : super(key: key);
 
+  @override
+  State<StatefulWidget> createState() => _BuildsOverviewPageState();
+}
+
+class _BuildsOverviewPageState extends State<BuildsOverviewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(appResponseItemModel.title + ' - ' + 'Builds Overview'),
+        title: Text(widget.appResponseItemModel.title + ' - ' + 'Builds Overview'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.refresh),
+            onPressed: () { setState(() {
+              // reload
+            }); },
+          )
+        ],
       ),
       body: _buildBody(context),
     );
@@ -31,7 +44,7 @@ class BuildsOverviewPage extends StatelessWidget {
 
   FutureBuilder<Response> _buildBody(BuildContext context) {
     return FutureBuilder<Response<BuildListResponseModel>>(
-      future: Provider.of<BitriseApiService>(context).getBuilds(appResponseItemModel.slug),
+      future: Provider.of<BitriseApiService>(context).getBuilds(widget.appResponseItemModel.slug),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {
@@ -95,7 +108,7 @@ class BuildsOverviewPage extends StatelessWidget {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) =>
-            BuildDetailPage(appSlug: appResponseItemModel.slug, buildItem: buildResponseItemModel),
+            BuildDetailPage(appSlug: widget.appResponseItemModel.slug, buildItem: buildResponseItemModel),
       ),
     );
   }
