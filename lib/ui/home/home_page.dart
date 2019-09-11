@@ -99,6 +99,7 @@ class _HomePageState extends State<HomePage> {
         return Card(
           elevation: 4,
           child: ListTile(
+            leading: items[index].avatar_url == null ? null : Image.network(items[index].avatar_url),
             title: Text(
               items[index].title,
               style: TextStyle(fontWeight: FontWeight.bold),
