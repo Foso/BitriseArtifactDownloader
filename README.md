@@ -30,6 +30,12 @@ This is a flutter app which uses the Bitrise Api(https://api-docs.bitrise.io/) t
 [![GitHub stars](https://img.shields.io/github/stars/Foso/BitriseArtifactDownloader.svg?style=social&label=Star)](https://github.com/Foso/BitriseArtifactDownloader) [![GitHub forks](https://img.shields.io/github/forks/Foso/BitriseArtifactDownloader.svg?style=social&label=Fork)](https://github.com/Foso/BitriseArtifactDownloader/fork) [![GitHub watchers](https://img.shields.io/github/watchers/Foso/BitriseArtifactDownloader.svg?style=social&label=Watch)](https://github.com/Foso/BitriseArtifactDownloader) [![Twitter Follow](https://img.shields.io/twitter/follow/jklingenberg_.svg?style=social)](https://twitter.com/jklingenberg_)
 
 
+
+## ✍️ Feedback
+
+Feel free to send feedback on [Twitter](https://twitter.com/jklingenberg_) or [file an issue](https://github.com/foso/BitriseArtifactDownloader/issues/new). Feature requests/Pull requests are always welcome. 
+
+
 ## 📜 License
 
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/Foso/BitriseArtifactDownloader/blob/master/LICENSE) file for details
